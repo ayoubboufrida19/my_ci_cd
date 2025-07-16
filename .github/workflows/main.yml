@@ -1,4 +1,4 @@
-name: build & deploy my app spring boot
+name: build &deploy my app spring boot
 
 on:
   push:
