@@ -1,4 +1,4 @@
-name: build &deploy my app spring boot
+name: build & deploy my app spring boot
 
 on:
   push:
@@ -7,27 +7,20 @@ on:
 
 jobs:
   build-deploy:
-    name: build and deploy spring boot for beginners
+    name: Build and deploy Spring Boot app
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup JDK 17
         uses: actions/setup-java@v2
         with:
           distribution: 'corretto'
-          java-version: 17
+          java-version: '17'
 
-      - name: unit tests
+      - name: Run unit tests
         run: mvn -B test --file pom.xml
 
       - name: Build the application
-        run: |
-          mvn clean
-          mvn -B package --file pom.xml
-
-
-
-
-
+        run: mvn clean package --file pom.xml
