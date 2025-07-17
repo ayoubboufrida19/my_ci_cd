@@ -24,3 +24,23 @@ jobs:
 
       - name: Build the application
         run: mvn clean package --file pom.xml
+
+      - name: build docker image
+        uses: actions/buils-push-action@v2
+        width:
+            context: .
+            dockerfile: Dockerfile
+            push:  false
+            tags: ${{ secrets.DOCKER_USERNAME }}/spring_boot-app:${{ env.TAG }}
+      - name: login to docker  Hub
+        uses: docker/login-action@v1
+        with:
+            username: ${{ secrets.DOCKER_HUB_USERNAME }}
+            password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: push  to docker hub
+        uses: actions/buils-push-action@v2
+        width:
+          context: .
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/spring_boot-app:${{ env.TAG }}
