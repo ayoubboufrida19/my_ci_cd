@@ -40,4 +40,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/spring_boot-app:${{ env.TAG }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring_boot-app:${{ env.TAG }}
